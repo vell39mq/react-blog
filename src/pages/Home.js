@@ -7,6 +7,9 @@ const Home = ({isAuth}) => {
   const [isEffect,setIsEffect] = useState(false)
   const postCollectionRef = collection(db, "posts");
 
+  useEffect(()=>{
+    setIsEffect(true)
+  },[])
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
