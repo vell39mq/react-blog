@@ -4,6 +4,7 @@ import { auth, db } from "../firebase-config";
 
 const Home = ({isAuth}) => {
   const [postLists, setPostLists] = useState([]);
+  const [isEffect,setIsEffect] = useState(false)
   const postCollectionRef = collection(db, "posts");
 
   useEffect(() => {
@@ -12,11 +13,13 @@ const Home = ({isAuth}) => {
       setPostLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-  },[]);
+    setIsEffect(false)
+  },[isEffect]);
 
   const deletePost = async(id) => {
     const postDoc = doc(db,"posts", id)
     await deleteDoc(postDoc)
+    setIsEffect(true)
   }
 
   return (
