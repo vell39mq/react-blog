@@ -29,9 +29,9 @@ const Home = ({isAuth}) => {
                 <h1>{post.title}</h1>
               </div>
               <div className="deletePost">
-                {/* {isAuth && post.author.id === auth.currentUser.uid && (
+                {isAuth && post.author.id === auth.currentUser.uid && (
                 <button onClick={()=>{deletePost(post.id)}}>&#x1f5d1;</button>
-                )} */}
+                )}
               </div>
             </div>
             <div className="postTextContainer">{post.postText}</div>
