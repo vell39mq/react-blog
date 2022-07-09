@@ -4,12 +4,13 @@ import { auth, db } from "../firebase-config";
 
 const Home = ({isAuth}) => {
   const [postLists, setPostLists] = useState([]);
-  const [isEffect,setIsEffect] = useState(false)
+  const [isEffect,setIsEffect] = useState(true)
   const postCollectionRef = collection(db, "posts");
 
   useEffect(()=>{
-    setIsEffect(true)
+    setIsEffect(false)
   },[])
+  
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
@@ -27,9 +28,9 @@ const Home = ({isAuth}) => {
 
   return (
     <div className="homePage">
-      {postLists.map((post) => {
+      {postLists.map((post,index) => {
         return (
-          <div className="post">
+          <div key={index} className="post">
             <div className="postHeader">
               <div className="title">
                 <h1>{post.title}</h1>

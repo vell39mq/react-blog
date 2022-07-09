@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase-config";
 import {useNavigate} from 'react-router-dom'
@@ -12,6 +12,7 @@ const CreatePost = ({isAuth}) => {
     await addDoc(postCollectionRef, {
       title,
       postText,
+      timestamp: serverTimestamp(),
       author: { 
         name: auth.currentUser.displayName, 
         id: auth.currentUser.uid 
